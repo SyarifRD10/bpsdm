@@ -6,7 +6,7 @@
 
 <div class="row mb-2">
     <div class="col-4">
-        <h5>Upload & Delete Format Excel</h5>
+        <!-- <h5>Upload & Delete Format Excel</h5> -->
     </div>
     <div class="col-8">
         <hr>
@@ -21,7 +21,7 @@
 
 <div class="row mb-2">
     <div class="col-4">
-        <h5>Data Peserta LATSAR</h5>
+        <!-- <h5>Data Peserta LATSAR</h5> -->
     </div>
     <div class="col-8">
         <hr>
