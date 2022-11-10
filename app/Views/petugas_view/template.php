@@ -9,14 +9,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?= $title; ?></title>
+    <title><?=$title;?></title>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -40,7 +40,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item <?= $menu == 'dashboard' ? 'active' : '' ?>">
+            <li class="nav-item <?=$menu == 'dashboard' ? 'active' : ''?>">
                 <a class="nav-link" href="/">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -54,7 +54,7 @@
                 Pendataan
             </div>
 
-            <li class="nav-item <?= $menu == 'datapegawai' ? 'active' : '' ?>">
+            <li class="nav-item <?=$menu == 'datapegawai' ? 'active' : ''?>">
                 <a class="nav-link" href="/petugasuser">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Data Pegawai</span></a>
@@ -205,10 +205,10 @@
                 <div class="container-fluid">
 
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800"><?= $subtitle; ?></h1>
+                        <h1 class="h3 mb-0 text-gray-800"><?=$subtitle;?></h1>
                     </div>
 
-                    <?= $this->renderSection('content'); ?>
+                    <?=$this->renderSection('content');?>
                     <!-- Page Heading -->
 
                 </div>
@@ -258,14 +258,14 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
     <!-- <script src="vendor/chart.js/Chart.min.js"></script> -->
