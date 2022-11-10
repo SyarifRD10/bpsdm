@@ -1,5 +1,5 @@
-<?= $this->extend('pegawai_view/pegewaiTemplate'); ?>
-<?= $this->section('content'); ?>
+<?=$this->extend('pegawai_view/pegewaiTemplate');?>
+<?=$this->section('content');?>
 <div class="row mb-4 mt-5">
     <button type="button" class="btn btn-success mr-4">Download format Excel</button>
 
@@ -21,10 +21,10 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($data as $d) : ?>
+            <?php foreach ($data as $d): ?>
                 <tr>
                     <th scope="row">1</th>
-                    <td><?= $d['nama_pegawai']; ?></td>
+                    <td><?=$d['nama_pegawai'];?></td>
                     <td></td>
                     <td>
                         <button type="button" class="btn btn-warning">
@@ -32,7 +32,7 @@
                         </button>
                     </td>
                 </tr>
-            <?php endforeach; ?>
+            <?php endforeach;?>
         </tbody>
     </table>
 </div>
@@ -41,7 +41,7 @@
 
 <!-- modal -->
 <form action="/save" method="post" enctype="multipart/form-data">
-    <?= csrf_field() ?>
+    <?=csrf_field()?>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -70,4 +70,4 @@
         </div>
     </div>
 </form>
-<?= $this->endSection(); ?>
+<?=$this->endSection();?>

@@ -18,7 +18,7 @@ class MendataPegawai extends BaseController
         $data = [
             'title' => 'Mendata',
             'menu' => 'mendata',
-            'data' => $datas
+            'data' => $datas,
         ];
         echo view('pegawai_view/mendataPegawai', $data);
     }
@@ -26,7 +26,7 @@ class MendataPegawai extends BaseController
     public function save()
     {
         $this->dataModel->save([
-            'nama_pegawai' => $this->request->getVar('nama_pegawai')
+            'nama_pegawai' => $this->request->getVar('nama_pegawai'),
         ]);
 
         // $data = $this->request->getPost();
