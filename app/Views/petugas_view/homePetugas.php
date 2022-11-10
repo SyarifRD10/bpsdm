@@ -1,12 +1,12 @@
-<?= $this->extend('petugas_view/template'); ?>
-<?= $this->section('content'); ?>
+<?=$this->extend('petugas_view/template');?>
+<?=$this->section('content');?>
 <!-- Page Heading -->
 
 <!-- Content Row -->
 
 <div class="row mb-2">
     <div class="col-4">
-        <!-- <h5>Upload & Delete Format Excel</h5> -->
+        <h5>Upload & Delete Format Excel</h5>
     </div>
     <div class="col-8">
         <hr>
@@ -21,7 +21,7 @@
 
 <div class="row mb-2">
     <div class="col-4">
-        <!-- <h5>Data Peserta LATSAR</h5> -->
+        <h5>Data Peserta LATSAR</h5>
     </div>
     <div class="col-8">
         <hr>
@@ -245,8 +245,9 @@
 
 
 <!-- modal -->
-<form action="/save_d" method="post" enctype="multipart/form-data">
-    <?= csrf_field(); ?>
+<!-- <form action="/save_d" method="post" enctype="multipart/form-data"> -->
+    <?=form_open_multipart(base_url('/save_d'));?>
+    <?=csrf_field();?>
     <div class="modal fade" id="Modalfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -272,6 +273,7 @@
             </div>
         </div>
     </div>
-</form>
+    <?=form_close()?>
+<!-- </form> -->
 
-<?= $this->endSection(); ?>
+<?=$this->endSection();?>
