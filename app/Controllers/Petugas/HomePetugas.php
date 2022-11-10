@@ -25,8 +25,9 @@ class HomePetugas extends BaseController
     public function save()
     {
         // dd($this->request->getVar());
+        dd('berhasil');
         $this->dataModel->save([
-            'document' => $this->request->getVar('document')
+            'dokumen1' => $this->request->getVar('dokumen1')
         ]);
 
         return redirect()->to('/');

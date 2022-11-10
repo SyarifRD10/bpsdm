@@ -8,5 +8,5 @@ class DataM extends Model
 {
     protected $table      = 'data';
     protected $primaryKey = 'iddata';
-    protected $allowedFields = ['nama_pegawai'];
+    protected $allowedFields = ['nama_pegawai', 'dokumen1', 'dokumen2'];
 }

@@ -275,7 +275,7 @@
     <script src="js/demo/chart-pie-demo.js"></script> -->
 
 
-    <script>
+    <!-- <script>
         function changeLable() {
             const document = document.querySelector('#document');
             const documentLable = document.querySelector('.custom-file-lable');
@@ -285,7 +285,7 @@
             const fileDocument = new FileReader();
             fileDocument.readAsDataURL(document.file[0]);
         }
-    </script>
+    </script> -->
 </body>
 
 </html>
