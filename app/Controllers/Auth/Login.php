@@ -9,7 +9,7 @@ class Login extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Login'
+            'title' => 'LATSAR | Login',
         ];
         echo view('Auth/login', $data);
     }

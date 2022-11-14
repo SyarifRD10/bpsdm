@@ -50,6 +50,7 @@ $routes->get('/mendatapgw', 'Pegawai\MendataPegawai::index');
 
 //auth
 $routes->get('/login', 'Auth\Login::index');
+$routes->get('/signup', 'Auth\Signup::index');
 
 /*
  * --------------------------------------------------------------------

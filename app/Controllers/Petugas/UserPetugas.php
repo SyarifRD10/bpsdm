@@ -21,9 +21,8 @@ class UserPetugas extends BaseController
             'title' => 'Petugas | Data Pendata',
             'subtitle' => 'Data Pendata',
             'user' => $user,
-            'menu' => 'datapegawai'
+            'menu' => 'datapegawai',
         ];
-
 
         echo view('petugas_view/userPetugas', $data);
     }

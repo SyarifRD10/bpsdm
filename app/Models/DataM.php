@@ -14,4 +14,5 @@ class DataM extends Model
     {
         return $this->db->table('data')->insert($data);
     }
+
 }
