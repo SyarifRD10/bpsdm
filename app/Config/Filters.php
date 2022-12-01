@@ -8,6 +8,7 @@ use CodeIgniter\Filters\DebugToolbar;
 use CodeIgniter\Filters\Honeypot;
 use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
+use \App\Filters\loginFilter;
 
 class Filters extends BaseConfig
 {
@@ -18,11 +19,12 @@ class Filters extends BaseConfig
      * @var array
      */
     public $aliases = [
-        'csrf'          => CSRF::class,
-        'toolbar'       => DebugToolbar::class,
-        'honeypot'      => Honeypot::class,
-        'invalidchars'  => InvalidChars::class,
+        'csrf' => CSRF::class,
+        'toolbar' => DebugToolbar::class,
+        'honeypot' => Honeypot::class,
+        'invalidchars' => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'isLoggedIn' => loginFilter::class,
     ];
 
     /**
@@ -68,5 +70,11 @@ class Filters extends BaseConfig
      *
      * @var array
      */
-    public $filters = [];
+    public $filters = [
+        'isLoggedIn' => ['before' =>
+            [
+                'home', 'pegawai', 'mendatapgw', 'petugasuser',
+            ],
+        ],
+    ];
 }

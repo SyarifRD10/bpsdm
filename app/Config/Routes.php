@@ -25,7 +25,7 @@ $routes->set404Override();
 // where controller filters or CSRF protection are bypassed.
 // If you don't want to define all routes, please use the Auto Routing (Improved).
 // Set `$autoRoutesImproved` to true in `app/Config/Feature.php` and set the following to true.
-// $routes->setAutoRoute(true);
+$routes->setAutoRoute(true);
 
 /*
  * --------------------------------------------------------------------
@@ -38,7 +38,8 @@ $routes->set404Override();
 // $routes->get('/', 'Home::index');
 
 // routes for petugas
-$routes->get('/', 'Petugas\HomePetugas::index');
+// $routes->get('/', 'Petugas\HomePetugas::index');
+$routes->get('/home', 'Petugas\HomePetugas::index');
 $routes->post('/save_d', 'Petugas\HomePetugas::save');
 $routes->get('/petugasuser', 'Petugas\UserPetugas::index');
 // $routes->get('/petugaspegawai', 'Petugas\PegawaiPetugas::index');
@@ -48,8 +49,12 @@ $routes->get('/pegawai', 'Pegawai\HomePegawai::index');
 $routes->post('/save', 'Pegawai\MendataPegawai::save');
 $routes->get('/mendatapgw', 'Pegawai\MendataPegawai::index');
 
-//auth
-$routes->get('/login', 'Auth\Login::index');
+//auth login
+$routes->get('/', 'Auth\Login::login');
+$routes->post('/process', 'Auth\Login::loginProcess');
+$routes->get('/out', 'Auth\Login::logout');
+
+// auth regis
 $routes->get('/signup', 'Auth\Signup::index');
 
 /*

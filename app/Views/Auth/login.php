@@ -18,17 +18,29 @@
                                 <img src="/img/pemprov.png" alt="logo pemprov papua" class="logo mb-4">
                                 <h1 class="h4 text-gray-900 mb-4">LOGIN LATSAR</h1>
                             </div>
-                            <form class="user">
+
+
+                                <?php if (session()->getFlashdata('error')): ?>
+                                    <div class="alert alert-danger alert-dismissible show fade">
+                                        <div class="alert-body">
+                                            <button class="close" data-dismiss="alert">x</button>
+                                            <b>Error !</b>
+                                            <?=session()->getFlashdata('error')?>
+                                        </div>
+                                    </div>
+                                <?php endif;?>
+                            <form method="POST" class="user" action="/process">
+                                <?=csrf_field()?>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Username">
+                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" name="email" placeholder="Enter Email" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" name="password" placeholder="Password">
                                 </div>
 
-                                <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                    Login
-                                </a>
+                                <button class="btn btn-primary btn-user btn-block" type="submit">
+                                        Login
+                                </button>
 
 
                             </form>
