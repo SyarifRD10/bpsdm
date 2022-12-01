@@ -49,7 +49,7 @@
                                 <div class="form-group">
                                     <select name="agama" class="form-control">
                                         <option selected>Agama</option>
-
+                                        <?=form_dropdown('name', $data);?>
 
                                     </select>
                                 </div>

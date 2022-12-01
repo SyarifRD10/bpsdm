@@ -169,7 +169,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="/img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -276,15 +276,15 @@
 
 
     <!-- <script>
-        function changeLable() {
-            const document = document.querySelector('#document');
-            const documentLable = document.querySelector('.custom-file-lable');
+            document.getElementById("dokumen1").name;
+        // function changeLable() {
+        //     const documentLable = document.querySelector('.custom-file-lable');
 
-            documentLable.textContent = document.file[0].name;
+        //     documentLable.textContent = document.file[0].name;
 
-            const fileDocument = new FileReader();
-            fileDocument.readAsDataURL(document.file[0]);
-        }
+        //     const fileDocument = new FileReader();
+        //     fileDocument.readAsDataURL(document.file[0]);
+        // }
     </script> -->
 </body>
 

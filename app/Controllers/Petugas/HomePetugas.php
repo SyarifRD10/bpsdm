@@ -19,34 +19,49 @@ class HomePetugas extends BaseController
             'title' => 'Petugas | Dashboard Petugas',
             'subtitle' => 'Dashboard',
             'menu' => 'dashboard',
+            'validation' => \Config\Services::validation(),
         ];
-        echo view('petugas_view/homePetugas', $data);
+        return view('petugas_view/homePetugas', $data);
     }
 
     public function save()
     {
-        // $dat = $this->request->getMethod();
-        // if($dat !== 'post'){
-        //     return redirect()->to(base_url('/'));
-        // }
-
-        // $validated = $this->validate([
-        //     'file' =>
-        // ])
-
-        // dd($this->request->getVar());
-        // dd('berhasil');
-        // $this->dataModel->save([
-        //     'dokumen1' => $this->request->getVar('dokumen1'),
-        // ]);
-
-        // return redirect()->to('/');
-
         if (!$this->validate([
-            'document' => 'uploaded[document]|max_size|[document]|mine_in[document,file/xlsx,file/xls]',
+            'dokumen1' => [
+                'rules' => 'uploaded[dokumen1]|max_size[dokumen1,10024]|ext_in[dokumen1,xls,xlt,xml,xlsx,xlsm]|mime_in[dokumen1,application/xls,application/excel,application/msexcel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet]',
+                'errors' => [
+                    'uploaded' => 'File tidak boleh sama denga yang ada',
+                    'max_size' => 'Ukuran dokumen terlalu besar',
+                    'ext_in' => 'Format file tidak sesuai Kax',
+                    'mime_in' => 'Format file tidak sesuai',
+                ],
+            ],
         ])) {
-            $validation = \Config\Services::validation();
-            return redirect()->to('/')->withInput();
+
+            session()->setFlashdata('validation', $this->validator->listErrors());
+            return redirect()->back()->withInput();
+
+            // $validation = \Config\Services::validation();
+            // return redirect()->to('/')->withInput()->with('validation', $validation);
+
         }
+
+        $fileFormat = $this->request->getFile('dokumen1');
+        $namaFile = $fileFormat->getRandomName();
+        $fileFormat->move('doc', $namaFile);
+
+        // $namaFile = $fileFormat->getName();
+
+        $this->dataModel->save([
+            'dokumen1' => $namaFile,
+        ]);
+
+        // session()->setFlashdata('pesan', )
+        return redirect()->to('/')->with('succes', 'Data berhasil disimpan');
+        // return redirect()->to(site_url('/'))->withInput()->with('validation', $validation);
+        // $data = $this->request->getPost();
+        // $this->dataModel->insert($data);
+
     }
+
 }

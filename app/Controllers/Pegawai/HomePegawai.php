@@ -10,8 +10,9 @@ class HomePegawai extends BaseController
     {
         $data = [
             'title' => 'Home Pegawai',
-            'menu' => 'home'
+            'menu' => 'home',
         ];
         echo view('pegawai_view/homePegawai', $data);
     }
+
 }

@@ -15,16 +15,17 @@ class UserPetugasM extends Model
     //     return $data;
     // }
 
-    // public function enum_select($table, $field)
-    // {
-    //     $query = "SHOW COLUMNS FROM " . $table . " LIKE '$field'";
-    //     $row = $this->query("SHOW COLUMNS FROM " . $table . " LIKE '$field'")->row()->Type;
-    //     $regex = "/'(.*?)'/";
-    //     preg_match_all($regex, $row, $enum_array);
-    //     $enum_fields = $enum_array[1];
-    //     foreach ($enum_fields as $key => $value) {
-    //         $enums[$value] = $value;
-    //     }
-    //     return $enums;
-    // }
+    public function enum_select($table, $field)
+    {
+
+        $query = "SHOW COLUMNS FROM " . $table . " LIKE '$field'";
+        $row = $this->query("SHOW COLUMNS FROM " . $table . " LIKE '$field'")->row()->Type;
+        $regex = "/'(.*?)'/";
+        preg_match_all($regex, $row, $enum_array);
+        $enum_fields = $enum_array[6];
+        foreach ($enum_fields as $key => $value) {
+            $enums[$value] = $value;
+        }
+        return $enums;
+    }
 }

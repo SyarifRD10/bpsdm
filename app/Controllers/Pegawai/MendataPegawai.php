@@ -23,15 +23,4 @@ class MendataPegawai extends BaseController
         echo view('pegawai_view/mendataPegawai', $data);
     }
 
-    public function save()
-    {
-        $this->dataModel->save([
-            'nama_pegawai' => $this->request->getVar('nama_pegawai'),
-        ]);
-
-        // $data = $this->request->getPost();
-        // $this->dataModel->insert($data);
-
-        return redirect()->to(site_url('/mendatapgw'))->with('succes', 'Data berhasil disimpan');
-    }
 }
