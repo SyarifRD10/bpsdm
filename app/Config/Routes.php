@@ -42,7 +42,12 @@ $routes->setAutoRoute(true);
 $routes->get('/home', 'Petugas\HomePetugas::index');
 $routes->post('/save_d', 'Petugas\HomePetugas::save');
 $routes->get('/petugasuser', 'Petugas\UserPetugas::index');
-// $routes->get('/petugaspegawai', 'Petugas\PegawaiPetugas::index');
+// instansi
+$routes->get('/addInstansi', 'Petugas\InstansiPetugas::index');
+$routes->post('/save_inst', 'Petugas\InstansiPetugas::save');
+$routes->get('/delete_inst/(:num)', 'Petugas\InstansiPetugas::delete/$1');
+$routes->get('/edit_inst/(:segment)', 'Petugas\InstansiPetugas::edit/$1');
+$routes->post('/update_inst/(:segment)', 'Petugas\InstansiPetugas::update/$1');
 
 // routes for pegawai
 $routes->get('/pegawai', 'Pegawai\HomePegawai::index');

@@ -3,30 +3,31 @@
 namespace App\Controllers\Auth;
 
 use App\Controllers\BaseController;
-use App\Models\UserPetugasM;
+use App\Models\instansiM;
+use App\Models\pegawaiM;
+use App\Models\userM;
 
 class Signup extends BaseController
 {
-    protected $M_userPetugas;
+    protected $M_Pegawai;
+    protected $M_Inst;
+    protected $M_User;
     public function __construct()
     {
-        $this->M_userPetugas = new UserPetugasM();
+        $this->M_Pegawai = new pegawaiM();
+        $this->M_Inst = new instansiM();
+        $this->M_User = new userM();
         helper('html');
     }
 
     public function index()
     {
-        $datas = $this->M_userPetugas->get();
-        // $datta = $this->M_userPetugas->enum_select('pegawai', 'agama');
-        $datas['agama'] = $this->M_userPetugas->enum_select('pegawai', 'agama');
-        // $datas = $this->M_userPetugas->show_d('pegawai', 'agama');
-        // $datas = $this->M_userPetugas->getIndexData('pegawai');
-        // $datas['pegawai'] = $this->M_userPetugas->get()->result();
-        // $datas = form_dropdown('test', $this->db->enum_select('pegawai', 'agama'));
-        // $enum = $this->M_userPetugas->show_d();
+        $data_I = $this->M_Inst->findAll();
+        $db = $this->M_Pegawai->findAll();
+
         $data = [
             'title' => 'LATSAR | Sign Up',
-            'data' => $datas,
+            'dataI' => $data_I,
         ];
         echo view('Auth/regis', $data);
     }
@@ -34,7 +35,5 @@ class Signup extends BaseController
     public function nambah()
     {
         $datas['agama'] = $this->M_userPetugas->enum_select('pegawai', 'agama');
-
     }
-
 }

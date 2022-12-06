@@ -1,5 +1,5 @@
-<?=$this->extend("Auth/templateAuth");?>
-<?=$this->section("auth");?>
+<?= $this->extend("Auth/templateAuth"); ?>
+<?= $this->section("auth"); ?>
 
 <!-- Outer Row -->
 <div class="row justify-content-center mt-5">
@@ -14,7 +14,7 @@
                     <div class="col-lg">
                         <div class="p-5">
                             <div class="text-center">
-                                <img src="/img/pemprov.png" alt="logo pemprov papua" class="logo mb-4">
+                                <img src="/img/pemprov.png" alt="logo pemprov papua" class="mb-4" width="25%" height="50%">
                                 <h1 class="h4 text-gray-900 mb-4">SINGUP LATSAR</h1>
                             </div>
                             <form class="user">
@@ -26,10 +26,7 @@
                                     <div class="form-group mr-4 align-self-center" style="padding-top: 10px;">
                                         <input type="text" class="form-control form-control-user" placeholder="NIK">
                                     </div>
-                                    <!-- <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                        <label class="form-check-label" for="inlineRadio1">Pria</label>
-                                    </div> -->
+
                                     <div class="form-check form-check-inline">
                                         <div class="mr-4">
                                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
@@ -43,23 +40,34 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email">
-                                </div>
+                                    <select name="agama" class="form-control text-center">
+                                        <option selected>---- Pilih Agama ----</option>
 
-                                <div class="form-group">
-                                    <select name="agama" class="form-control">
-                                        <option selected>Agama</option>
-                                        <?=form_dropdown('name', $data);?>
 
                                     </select>
                                 </div>
-                                <div class="d-flex d-row form-group justify-content-between">
+
+                                <div class="form-group">
+                                    <select name="agama" class="form-control text-center">
+                                        <option selected>---- Pilih Instansi ----</option>
+                                        <?php foreach ($dataI as $i) : ?>
+                                            <option value="<?= $i['idInstansi']; ?>"><?= $i['nama']; ?></option>
+                                        <?php endforeach; ?>
+
+                                    </select>
+                                </div>
+
+                                <div class="d-flex d-row form-group justify-content-between mt-4">
                                     <div class="form-group mr-4">
                                         <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Tempat Lahir">
                                     </div>
                                     <div class="form-group">
                                         <input type="date" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Tempat Lahir">
                                     </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email">
                                 </div>
 
                                 <a href="index.html" class="btn btn-primary btn-user btn-block">
@@ -83,4 +91,4 @@
 
 </div>
 
-<?=$this->endSection();?>
+<?= $this->endSection(); ?>

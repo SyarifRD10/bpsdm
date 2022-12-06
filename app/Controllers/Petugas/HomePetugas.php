@@ -4,21 +4,26 @@ namespace App\Controllers\Petugas;
 
 use App\Controllers\BaseController;
 use App\Models\DataM;
+use App\Models\instansiM;
 
 class HomePetugas extends BaseController
 {
     protected $dataModel;
+    protected $instansiModel;
     public function __construct()
     {
         $this->dataModel = new DataM();
+        $this->instansiModel = new instansiM();
         helper('form');
     }
     public function index()
     {
+        $inst = $this->instansiModel->findAll();
         $data = [
             'title' => 'Petugas | Dashboard Petugas',
             'subtitle' => 'Dashboard',
             'menu' => 'dashboard',
+            'inst' => $inst,
             'validation' => \Config\Services::validation(),
         ];
         return view('petugas_view/homePetugas', $data);

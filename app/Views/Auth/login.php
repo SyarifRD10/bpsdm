@@ -1,5 +1,5 @@
-<?=$this->extend("Auth/templateAuth");?>
-<?=$this->section("auth");?>
+<?= $this->extend("Auth/templateAuth"); ?>
+<?= $this->section("auth"); ?>
 
 <!-- Outer Row -->
 <div class="row justify-content-center mt-5">
@@ -20,17 +20,17 @@
                             </div>
 
 
-                                <?php if (session()->getFlashdata('error')): ?>
-                                    <div class="alert alert-danger alert-dismissible show fade">
-                                        <div class="alert-body">
-                                            <button class="close" data-dismiss="alert">x</button>
-                                            <b>Error !</b>
-                                            <?=session()->getFlashdata('error')?>
-                                        </div>
+                            <?php if (session()->getFlashdata('error')) : ?>
+                                <div class="alert alert-danger alert-dismissible show fade">
+                                    <div class="alert-body">
+                                        <button class="close" data-dismiss="alert">x</button>
+                                        <b>Error !</b>
+                                        <?= session()->getFlashdata('error') ?>
                                     </div>
-                                <?php endif;?>
+                                </div>
+                            <?php endif; ?>
                             <form method="POST" class="user" action="/process">
-                                <?=csrf_field()?>
+                                <?= csrf_field() ?>
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" name="email" placeholder="Enter Email" autofocus>
                                 </div>
@@ -39,7 +39,7 @@
                                 </div>
 
                                 <button class="btn btn-primary btn-user btn-block" type="submit">
-                                        Login
+                                    Login
                                 </button>
 
 
@@ -59,4 +59,4 @@
 
 </div>
 
-<?=$this->endSection();?>
+<?= $this->endSection(); ?>

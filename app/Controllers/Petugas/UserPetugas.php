@@ -3,14 +3,14 @@
 namespace App\Controllers\Petugas;
 
 use App\Controllers\BaseController;
-use App\Models\UserPetugasM;
+use App\Models\pegawaiM;
 
 class UserPetugas extends BaseController
 {
     protected $UserModel;
     public function __construct()
     {
-        $this->UserModel = new UserPetugasM();
+        $this->UserModel = new pegawaiM();
     }
 
     public function index()
