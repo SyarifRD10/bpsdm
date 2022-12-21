@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?=$title;?></title>
+    <title><?= $title; ?></title>
 
     <!-- Custom fonts for this template-->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -26,7 +26,7 @@
 
     <div class="container">
 
-        <?=$this->renderSection('auth');?>
+        <?= $this->renderSection('auth'); ?>
 
     </div>
 
@@ -39,6 +39,14 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/js/sb-admin-2.min.js"></script>
+
+    <script>
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                $(this).remove();
+            })
+        }, 3000)
+    </script>
 
 </body>
 

@@ -12,15 +12,25 @@
         <hr>
     </div>
 </div>
-<div class="row mb-2">
+<div class="row mb-4">
     <div class="col">
-        <button type="button" class="btn btn-info mr-2" data-toggle="modal" data-target="#Modalfile">Upload Format</button>
+        <button type="button" class="btn btn-info mr-2" data-toggle="modal" data-target="#ModalFormat">Upload Format</button>
         <a href="" class="btn btn-danger"> Hapus Format</a>
     </div>
 </div>
-<div class="row mb-2 ml-1">
-    <?= $validation->getError('dokumen1'); ?>
-</div>
+
+<?php if (session()->getFlashdata('pesan')) : ?>
+    <div class="alert alert-success" role="alert">
+        <?= session()->getFlashdata('pesan'); ?>
+    </div>
+<?php endif ?>
+
+<?php if (session()->getFlashdata('errors')) : ?>
+    <div class="alert alert-danger" role="alert">
+        <?= session()->getFlashdata('errors'); ?>
+    </div>
+<?php endif ?>
+
 <div class="row mb-2">
     <div class="col-4">
         <h5>Data Peserta LATSAR</h5>
@@ -56,10 +66,8 @@
 
 <!-- modal -->
 <form action="/save_d" method="post" enctype="multipart/form-data">
-    <? //=form_open_multipart(base_url('/save_d'));
-    ?>
     <?= csrf_field(); ?>
-    <div class="modal fade" id="Modalfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="ModalFormat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -72,8 +80,8 @@
 
                     <div class="form-group">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="dokumen1" id="dokumen1">
-                            <label class="custom-file-label" for="dokumen1">Upload format...</label>
+                            <input type="file" class="custom-file-input" name="format">
+                            <label class="custom-file-label">Upload format... *</label>
                         </div>
                     </div>
                 </div>
@@ -84,8 +92,6 @@
             </div>
         </div>
     </div>
-    <? //=form_close()
-    ?>
 </form>
 
 <?= $this->endSection(); ?>

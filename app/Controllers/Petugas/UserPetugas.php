@@ -4,22 +4,26 @@ namespace App\Controllers\Petugas;
 
 use App\Controllers\BaseController;
 use App\Models\pegawaiM;
+use App\Models\userM;
 
 class UserPetugas extends BaseController
 {
-    protected $UserModel;
+    protected $mPegawai;
+    protected $mUser;
     public function __construct()
     {
-        $this->UserModel = new pegawaiM();
+        $this->mPegawai = new pegawaiM();
+        $this->mUser = new userM();
     }
 
     public function index()
     {
-        $user = $this->UserModel->findAll();
-
+        $pgw = $this->mPegawai->gabung();
+        $user = $this->mUser->findAll();
         $data = [
             'title' => 'Petugas | Data Pendata',
             'subtitle' => 'Data Pendata',
+            'pgw' => $pgw,
             'user' => $user,
             'menu' => 'datapegawai',
         ];

@@ -9,6 +9,7 @@ use CodeIgniter\Filters\Honeypot;
 use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
 use \App\Filters\loginFilter;
+use \App\Filters\pgwFilter;
 
 class Filters extends BaseConfig
 {
@@ -25,6 +26,7 @@ class Filters extends BaseConfig
         'invalidchars' => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'isLoggedIn' => loginFilter::class,
+        'pgwFilter' => pgwFilter::class,
     ];
 
     /**
@@ -71,10 +73,25 @@ class Filters extends BaseConfig
      * @var array
      */
     public $filters = [
-        'isLoggedIn' => ['before' =>
+        'isLoggedIn' => [
+            'before' =>
             [
-                'home', 'pegawai', 'mendatapgw', 'petugasuser',
+                'pegawai', 'mendatapgw', 'petugasuser', 'petugas', 'addInstansi', 'home'
             ],
+            'after' =>
+            [
+                'login', 'signup'
+            ]
+        ],
+        'pgwFilter' => [
+            'before' =>
+            [
+                'petugasuser', 'addInstansi', 'home', 'petugas'
+            ],
+            'after' =>
+            [
+                'login', 'signup'
+            ]
         ],
     ];
 }

@@ -23,6 +23,7 @@ class Login extends BaseController
 
         $data = [
             'title' => 'LATSAR | Login',
+            'login' => \Config\Services::validation(),
         ];
 
         if (session('idUser')) {
@@ -42,9 +43,14 @@ class Login extends BaseController
         $user = $query->getRow();
         if ($user) {
             if (password_verify($post['password'], $user->password)) {
-                $params = ['idUser' => $user->idUser];
-                session()->set($params);
-                return redirect()->to(site_url('/home'));
+                $id = ['idUser' => $user->idUser];
+                $level = ['level' => $user->level];
+                session()->set($id);
+                session()->set($level);
+                if (session()->get('level') != 1) {
+                    return redirect()->to('/mendatapgw');
+                }
+                return redirect()->to('/home');
             } else {
                 return redirect()->back()->with('error', 'Password tidak sesuai');
             }
@@ -57,6 +63,6 @@ class Login extends BaseController
     public function logout()
     {
         session()->remove('idUser');
-        return redirect()->to(site_url('/'));
+        return redirect()->to(site_url('/signin'));
     }
 }

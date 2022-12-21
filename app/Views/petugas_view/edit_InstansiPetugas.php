@@ -15,13 +15,14 @@
                 <div class="table-responsive">
                     <form method="POST" class="user" action="/update_inst/<?= $insts['idInstansi']; ?>">
                         <?= csrf_field() ?>
+                        <input type="hidden" name="idInstansi" value="<?= $insts['idInstansi']; ?>">
                         <div class="form-group">
                             <label for="nama">Nama Instansi</label>
-                            <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" name="nama" value="<?= $insts['nama']; ?>" autofocus>
+                            <input type="text" class="form-control form-control-user" name="nama" value="<?= $insts['nama']; ?>" autofocus>
                         </div>
                         <div class="form-group">
                             <label for="alamat">Alamat Instansi</label>
-                            <input type="text" class="form-control form-control-user" id="exampleInputPassword" name="alamat" value="<?= $insts['alamat']; ?>">
+                            <input type="text" class="form-control form-control-user" name="alamat" value="<?= $insts['alamat']; ?>">
                         </div>
 
                         <button class="btn btn-primary btn-user btn-block" type="submit">

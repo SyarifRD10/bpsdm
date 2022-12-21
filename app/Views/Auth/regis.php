@@ -17,39 +17,38 @@
                                 <img src="/img/pemprov.png" alt="logo pemprov papua" class="mb-4" width="25%" height="50%">
                                 <h1 class="h4 text-gray-900 mb-4">SINGUP LATSAR</h1>
                             </div>
-                            <form class="user">
+
+                            <?php if (session()->getFlashdata('errors')) : ?>
+                                <div class="alert alert-danger" role="alert">
+                                    <?= session()->getFlashdata('errors'); ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <form class="user" action="/save_user" method="post">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Nama">
+                                    <input type="text" name="namaPegawai" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Nama">
                                 </div>
 
                                 <div class="d-flex flex-row justify-content-between form-group">
                                     <div class="form-group mr-4 align-self-center" style="padding-top: 10px;">
-                                        <input type="text" class="form-control form-control-user" placeholder="NIK">
+                                        <input type="text" name="no_identitas" class="form-control form-control-user" placeholder="NIK">
                                     </div>
 
                                     <div class="form-check form-check-inline">
                                         <div class="mr-4">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                            <input class="form-check-input" type="radio" name="JK" id="inlineRadio2" value="Pria">
                                             <label class="form-check-label" for="inlineRadio2">Pria</label>
                                         </div>
                                         <div class="">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                            <input class="form-check-input" type="radio" name="JK" id="inlineRadio1" value="Wanita">
                                             <label class="form-check-label" for="inlineRadio1">Wanita</label>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <select name="agama" class="form-control text-center">
-                                        <option selected>---- Pilih Agama ----</option>
-
-
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <select name="agama" class="form-control text-center">
-                                        <option selected>---- Pilih Instansi ----</option>
+                                    <select name="idInstansi" class="form-control text-center">
+                                        <option>---- Pilih Instansi ----</option>
                                         <?php foreach ($dataI as $i) : ?>
                                             <option value="<?= $i['idInstansi']; ?>"><?= $i['nama']; ?></option>
                                         <?php endforeach; ?>
@@ -57,29 +56,26 @@
                                     </select>
                                 </div>
 
-                                <div class="d-flex d-row form-group justify-content-between mt-4">
-                                    <div class="form-group mr-4">
-                                        <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Tempat Lahir">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="date" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Tempat Lahir">
-                                    </div>
+                                <div class="form-group">
+                                    <input name="email" type="email" class="form-control form-control-user" placeholder="Email">
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email">
+                                    <input name="password" type="password" class="form-control form-control-user" placeholder="Password">
                                 </div>
 
-                                <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                    Signup
-                                </a>
+                                <div class="form-group">
+                                    <input name="repassword" type="password" class="form-control form-control-user" placeholder="Retype Password">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-block">Signup</button>
 
 
                             </form>
                             <hr>
 
                             <div class="text-center">
-                                <a class="small" href="register.html">Create an Account!</a>
+                                <a class="small" href="/">Have an account? login here!!</a>
                             </div>
                         </div>
                     </div>

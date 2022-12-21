@@ -8,11 +8,5 @@ class userM extends Model
 {
     protected $table = 'user';
     protected $primaryKey = 'idUser';
-    protected $allowedFields = ['namaUser', 'email', 'password', 'level'];
-
-    public function insert_file($data)
-    {
-        return $this->db->table('data')->insert($data);
-    }
-
+    protected $allowedFields = ['email', 'password', 'level'];
 }

@@ -5,8 +5,13 @@
     <div class="alert alert-success" role="alert">
         <?= session()->getFlashdata('pesan'); ?>
     </div>
-<?php endif; ?>
+<?php endif ?>
 
+<?php if (session()->getFlashdata('errors')) : ?>
+    <div class="alert alert-danger" role="alert">
+        <?= session()->getFlashdata('errors'); ?>
+    </div>
+<?php endif ?>
 <div class="row mb-4">
     <div class="col">
         <button type="button" class="btn btn-info mr-2" data-toggle="modal" data-target="#modalInst">

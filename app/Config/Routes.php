@@ -47,20 +47,22 @@ $routes->get('/addInstansi', 'Petugas\InstansiPetugas::index');
 $routes->post('/save_inst', 'Petugas\InstansiPetugas::save');
 $routes->get('/delete_inst/(:num)', 'Petugas\InstansiPetugas::delete/$1');
 $routes->get('/edit_inst/(:segment)', 'Petugas\InstansiPetugas::edit/$1');
-$routes->post('/update_inst/(:segment)', 'Petugas\InstansiPetugas::update/$1');
+$routes->post('/update_inst/(:any)', 'Petugas\InstansiPetugas::update/$1');
 
 // routes for pegawai
-$routes->get('/pegawai', 'Pegawai\HomePegawai::index');
-$routes->post('/save', 'Pegawai\MendataPegawai::save');
+$routes->get('/', 'Pegawai\HomePegawai::index');
 $routes->get('/mendatapgw', 'Pegawai\MendataPegawai::index');
+$routes->post('/pegawaiFormat/(:segment)', 'Pegawai\MendataPegawai::save/$1');
+$routes->post('/pegawaiFoto', 'Pegawai\MendataPegawai::simpan');
 
 //auth login
-$routes->get('/', 'Auth\Login::login');
+$routes->get('/signin', 'Auth\Login::login');
 $routes->post('/process', 'Auth\Login::loginProcess');
 $routes->get('/out', 'Auth\Login::logout');
 
 // auth regis
 $routes->get('/signup', 'Auth\Signup::index');
+$routes->post('/save_user', 'Auth\Signup::save');
 
 /*
  * --------------------------------------------------------------------

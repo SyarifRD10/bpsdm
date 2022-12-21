@@ -1,14 +1,29 @@
-<?=$this->extend('pegawai_view/pegewaiTemplate');?>
-<?=$this->section('content');?>
+<?= $this->extend('pegawai_view/pegewaiTemplate'); ?>
+<?= $this->section('content'); ?>
 <div class="row mb-4 mt-5">
     <button type="button" class="btn btn-success mr-4">Download format Excel</button>
 
-    <button type="file" class="btn btn-primary">Upload format Excel</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFile">Upload format Excel</button>
 </div>
 
 <div class="row mb-4 mt-4">
-    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Upload Foto</button>
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalFoto">Upload Foto</button>
 </div>
+
+<?php if (session()->getFlashdata('pesan')) : ?>
+    <div class="alert alert-success" role="alert">
+        <?= session()->getFlashdata('pesan'); ?>
+    </div>
+<?php endif ?>
+
+<?php if (session()->getFlashdata('errors')) : ?>
+    <div class="alert alert-danger" role="alert">
+        <?= session()->getFlashdata('errors'); ?>
+    </div>
+<?php endif ?>
+
+
+
 
 <div class="row">
     <table class="table table-sm">
@@ -21,18 +36,18 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($data as $d): ?>
+            <?php foreach ($data as $d) : ?>
                 <tr>
                     <th scope="row">1</th>
-                    <td><?=$d['nama_pegawai'];?></td>
-                    <td></td>
+                    <td><?= $d['nama']; ?></td>
+                    <td><?= $d['foto']; ?></td>
                     <td>
                         <button type="button" class="btn btn-warning">
                             <a href="" class="fa fa-pen" style="color:white;text-decoration:none;"></a>
                         </button>
                     </td>
                 </tr>
-            <?php endforeach;?>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </div>
@@ -40,9 +55,9 @@
 
 
 <!-- modal -->
-<form action="/save" method="post" enctype="multipart/form-data">
-    <?=csrf_field()?>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<form action="/pegawaiFoto" method="post" enctype="multipart/form-data">
+    <?= csrf_field() ?>
+    <div class="modal fade" id="modalFoto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -53,13 +68,14 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label autofocus>Nama</label>
-                        <input type="text" class="form-control" name="nama_pegawai" placeholder="Nama pemilik foto" autofocus>
+                        <input type="text" class="form-control" name="nama" placeholder="Nama pemilik foto" autofocus>
                     </div>
-                    <!-- <div class="form-group">
-                        <label for="exampleFormControlFile1">Foto</label>
-                        <input type="file" class="form-control-file">
-                    </div> -->
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="foto" id="foto">
+                            <label class="custom-file-label" for="foto">Upload foto...</label>
+                        </div>
+                    </div>
 
                 </div>
                 <div class="modal-footer">
@@ -70,4 +86,37 @@
         </div>
     </div>
 </form>
-<?=$this->endSection();?>
+
+<form action="/pegawaiFormat" method="post" enctype="multipart/form-data">
+    <?= csrf_field() ?>
+    <div class="modal fade" id="modalFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Upload Data Excel</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="docJwb" id="docJwb">
+                            <label class="custom-file-label" for="docJwb">Upload format...</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+
+<?= $this->endSection(); ?>
