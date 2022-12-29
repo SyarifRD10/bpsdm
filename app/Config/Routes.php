@@ -55,8 +55,9 @@ $routes->get('/mendatapgw', 'Pegawai\MendataPegawai::index');
 $routes->post('/pegawaiFormat', 'Pegawai\MendataPegawai::save');
 $routes->post('/pegawaiFoto', 'Pegawai\MendataPegawai::simpan');
 $routes->get('/delete_foto/(:num)', 'Pegawai\MendataPegawai::delete/$1');
-$routes->get('/edit_foto/(:segment)', 'Pegawai\MendataPegawai::edit/$1');
+$routes->get('/edit_foto/(:num)', 'Pegawai\MendataPegawai::edit/$1');
 $routes->post('/update_foto/(:any)', 'Pegawai\MendataPegawai::update/$1');
+$routes->post('/update_foto', 'Pegawai\MendataPegawai::update');
 
 //auth login
 $routes->get('/signin', 'Auth\Login::login');

@@ -85,7 +85,7 @@ class InstansiPetugas extends BaseController
             'nama' => $this->request->getVar('nama'),
             'alamat' => $this->request->getVar('alamat'),
         ];
-        $this->instansiModel->save($data);
+        $this->instansiModel->update($id, $data);
         session()->setFlashdata('pesan', 'Data berhasil diubah');
         return redirect()->to('/addInstansi');
     }

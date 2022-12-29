@@ -113,7 +113,7 @@ class MendataPegawai extends BaseController
         return redirect()->to('/mendatapgw');
     }
 
-    public function edit($id)
+    public function edit($id = null)
     {
         // $inst = $this->instansiModel->findAll();
 
@@ -126,16 +126,56 @@ class MendataPegawai extends BaseController
         return view('pegawai_view/editFoto', $data);
     }
 
-    public function update($id)
+    public function update()
     {
+
+        // Ambil input dari form
+        $id = $this->request->getPost('iddata_foto');
+        $nama = $this->request->getPost('nama');
+        $foto = $this->request->getFile('foto');
+
+        // Validasi input
+        if (!$this->validate([
+            'nama' => 'required',
+            'foto' => [
+                'mime_in[foto,image/jpeg,image/png,image/gif]',
+                'max_size[foto,10024]',
+            ],
+        ])) {
+            // Tampilkan pesan error
+            session()->setFlashdata('errors', $this->validator->listErrors());
+            return redirect()->back()->withInput();
+        }
+
+        // Update data di database
+
+        $namaFile = $foto->getName();
+        $foto->move('doc/foto', $namaFile);
+
+        $users = session()->get('idUser');
 
         $data = [
             'id' => $id,
-            'nama' => $this->request->getVar('nama'),
-            'alamat' => $this->request->getVar('alamat'),
+            'nama' => $nama,
+            'foto' => $namaFile,
+            'user_idUser' => $users,
         ];
-        $this->instansiModel->save($data);
-        session()->setFlashdata('pesan', 'Data berhasil diubah');
-        return redirect()->to('/addInstansi');
+
+        if (!$this->Foto->update($id, $data)) {
+            echo $this->Foto->getError();
+            die();
+        }
+
+        // if ($foto->getError() == 4) {
+        //     // Jika foto tidak dipilih, abaikan update data foto
+        //     $this->Foto->save($data);
+        // } else {
+        //     // Update data foto
+        //     $data['foto'] = $foto->getName();
+        //     $this->Foto->save($data);
+        // }
+
+        // Tampilkan pesan sukses
+        return redirect()->to('/mendatapgw')->withInput()->with('message', 'Data berhasil diubah');
     }
 }

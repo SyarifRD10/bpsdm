@@ -65,7 +65,6 @@
 
     <script>
         window.setTimeout(function() {
-            console.log("Kode dijalankan!");
             $(".alert").fadeTo(500, 0).slideUp(500, function() {
                 $(this).remove();
             })
