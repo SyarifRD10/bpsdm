@@ -36,33 +36,18 @@
             </tr>
         </thead>
         <tbody>
-            <?php $x = 1; ?>
-            <?php if ($data == 'd') : ?>
-                <?php foreach ($data as $d) : ?>
-                    <tr>
-                        <th scope="row"><?= $x++; ?></th>
-                        <td><?= $d['nama']; ?></td>
-                        <td><?= $d['foto']; ?></td>
-                        <td>
-                            <button type="button" class="btn btn-warning">
-                                <a href="" class="fa fa-pen" style="color:white;text-decoration:none;"></a>
-                            </button>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-
-            <?php else : ?>
+            <?php $x = 1 ?>
+            <?php foreach ($data as $d) : ?>
                 <tr>
-                    <th scope="row"></th>
-                    <td></td>
-                    <td></td>
+                    <th scope="row"><?= $x++; ?></th>
+                    <td><?= $d['nama']; ?></td>
+                    <td><img src="/doc/foto/<?= $d['foto']; ?>" class="img"></td>
                     <td>
-                        <button type="button" class="btn btn-warning">
-                            <a href="" class="fa fa-pen" style="color:white;text-decoration:none;"></a>
-                        </button>
+                        <a href="/edit_foto/<?= $d['iddata_foto']; ?>" class="btn btn-info" type="button" style="color:white;text-decoration:none;"><i class="fas fa-pen"></i></a>
+                        <a href="/delete_foto/<?= $d['iddata_foto']; ?>" onclick="return confirm('Apakah anda yakin?')" type="button" class="btn btn-danger mr-2"><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>
-            <?php endif ?>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </div>
@@ -92,16 +77,6 @@
                             <label class="custom-file-label" for="foto">Upload foto...</label>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <select name="idInstansi" class="form-control text-center">
-                            <option>---- Pilih Instansi ----</option>
-                            <?php foreach ($dataI as $i) : ?>
-                                <option value="<?= $i['idInstansi']; ?>"><?= $i['nama']; ?></option>
-                            <?php endforeach; ?>
-
-                        </select>
-                    </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Save</button>
@@ -130,17 +105,6 @@
                             <input type="file" class="custom-file-input" name="data_jwb" id="data_jwb">
                             <label class="custom-file-label" for="data_jwb">Upload format...</label>
                         </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <select name="idInstansi" class="form-control text-center">
-                            <option>---- Pilih Instansi ----</option>
-                            <?php foreach ($dataI as $i) : ?>
-                                <option value="<?= $i['idInstansi']; ?>"><?= $i['nama']; ?></option>
-                            <?php endforeach; ?>
-
-                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">

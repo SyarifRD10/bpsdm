@@ -39,14 +39,28 @@ class Login extends BaseController
         // echo "Lanjut gan!";
         $post = $this->request->getPost();
 
-        $query = $this->userModel->table('user')->getWhere(['email' => $post['email']]);
-        $user = $query->getRow();
+        $email = $post['email'];
+        $password = $post['password'];
+        $user = $this->userModel->getUser($email);
+
+        // $query = $this->userModel->table('user')->getWhere(['email' => $email]);
+        // $user = $query->first();
         if ($user) {
-            if (password_verify($post['password'], $user->password)) {
-                $id = ['idUser' => $user->idUser];
-                $level = ['level' => $user->level];
-                session()->set($id);
-                session()->set($level);
+            if (password_verify($password, $user['password'])) {
+
+                $data = [
+                    'idUser' => $user['idUser'],
+                    'email' => $user['email'],
+                    'level' => $user['level']
+                ];
+                session()->set($data);
+
+                // $id = ['idUser' => $user->idUser];
+                // // $email = ['idUser' => $user->email];
+                // $level = ['level' => $user->level];
+                // session()->set($id);
+                // // session()->set($email);
+                // session()->set($level);
                 if (session()->get('level') != 1) {
                     return redirect()->to('/mendatapgw');
                 }

@@ -5,61 +5,35 @@ namespace App\Controllers\Pegawai;
 use App\Controllers\BaseController;
 use App\Models\DataJwbM;
 use App\Models\DataFotoM;
-use App\Models\instansiM;
 
 class MendataPegawai extends BaseController
 {
-    protected $ins;
     protected $Jwb;
     protected $Foto;
     public function __construct()
     {
-        $this->ins = new instansiM();
         $this->Jwb = new DataJwbM();
         $this->Foto = new DataFotoM();
     }
-    public function index($id = null)
+    public function index()
     {
-        if (isset($id)) {
-            $mydata = $this->Foto->get_id($id);
-            $dat = $this->ins->findAll();
-            // $datas = $this->Foto->findAll();
-            $data = [
-                'title' => 'Mendata',
-                'menu' => 'mendata',
-                'data' => $mydata,
-                'dataI' => $dat,
-                'validation' => \Config\Services::validation(),
-            ];
-
-            return view('pegawai_view/mendataPegawai', $data);
-        }
-
-        $dat = $this->ins->findAll();
+        // $mydata = $this->Foto->get_id($id);
+        $userId = session()->get('idUser');
+        $dat = $this->Foto->dataByUser($userId);
+        // $datas = $this->Foto->findAll();
         $data = [
             'title' => 'Mendata',
             'menu' => 'mendata',
-            'dataI' => $dat,
-            'data' => null,
+            'data' => $dat,
             'validation' => \Config\Services::validation(),
         ];
+
+
+
         echo view('pegawai_view/mendataPegawai', $data);
     }
-    public function save($id = null)
+    public function save()
     {
-        if (!isset($id)) {
-            // $dat = $this->ins->findAll();
-            // $datas = $this->Foto->findAll();
-            // $data = [
-            //     'title' => 'Mendata',
-            //     'menu' => 'mendata',
-            //     'data' => $datas,
-            //     'dataI' => $dat,
-            //     'validation' => \Config\Services::validation(),
-            // ];
-            return redirect()->to('/mendatapgw');
-        }
-
         if (!$this->validate([
             'data_jwb' => [
                 'rules' => 'uploaded[data_jwb]|max_size[data_jwb,10024]|ext_in[data_jwb,xls,xlt,xml,xlsx,xlsm]|mime_in[data_jwb,application/xls,application/excel,application/msexcel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet]',
@@ -80,9 +54,11 @@ class MendataPegawai extends BaseController
         $namaFile = $fileFormat->getName();
         $fileFormat->move('doc/dataPGW', $namaFile);
 
+        $userss = session()->get('idUser');
+
         $this->Jwb->save([
-            '' => $id,
             'data_jwb' => $namaFile,
+            'user_idUser' => $userss,
         ]);
 
         return redirect()->to('/mendatapgw')->with('pesan', 'Data berhasil disimpan');
@@ -115,18 +91,51 @@ class MendataPegawai extends BaseController
             return redirect()->back()->withInput();
         }
 
-        $namain = $this->request->getVar('nama');
         $fileFormat = $this->request->getFile('foto');
         $namaFile = $fileFormat->getName();
         $fileFormat->move('doc/foto', $namaFile);
-        $idins = $this->request->getVar('idInstansi');
+
+        $users = session()->get('idUser');
 
         $this->Foto->save([
             'foto' => $namaFile,
-            'nama' => $namain,
-            'instansi_idInstansi' => $idins,
+            'nama' => $this->request->getVar('nama'),
+            'user_idUser' => $users,
         ]);
 
-        return redirect()->to('/mendatapgw/$idins')->with('pesan', 'Data berhasil disimpan');
+        return redirect()->to('/mendatapgw')->with('pesan', 'Data berhasil disimpan');
+    }
+
+    public function delete($id)
+    {
+        $this->Foto->delete($id);
+        session()->setFlashdata('pesan', 'Data berhasil dihapus');
+        return redirect()->to('/mendatapgw');
+    }
+
+    public function edit($id)
+    {
+        // $inst = $this->instansiModel->findAll();
+
+        $data = [
+            'title' => 'Mendata',
+            'menu' => 'mendata',
+            'fot' => $this->Foto->find($id),
+            'validation' => \Config\Services::validation(),
+        ];
+        return view('pegawai_view/editFoto', $data);
+    }
+
+    public function update($id)
+    {
+
+        $data = [
+            'id' => $id,
+            'nama' => $this->request->getVar('nama'),
+            'alamat' => $this->request->getVar('alamat'),
+        ];
+        $this->instansiModel->save($data);
+        session()->setFlashdata('pesan', 'Data berhasil diubah');
+        return redirect()->to('/addInstansi');
     }
 }

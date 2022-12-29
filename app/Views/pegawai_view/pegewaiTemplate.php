@@ -14,6 +14,7 @@
 
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/css/customStyle.css" rel="stylesheet">
     <title><?= $title; ?></title>
 </head>
 
@@ -41,6 +42,10 @@
                     <li class="nav-item justify-content-end">
                         <a class="nav-link" href="/out">Logout</a>
                     </li>
+                    <li class="nav-item justify-content-end">
+                        <p class="nav-link"><?= session()->get('email'); ?></p>
+                    </li>
+
                 <?php endif; ?>
                 <?php if (session()->get('idUser') == false) : ?>
                     <li class="nav-item justify-content-end">
@@ -58,6 +63,15 @@
     </div>
 
 
+    <script>
+        window.setTimeout(function() {
+            console.log("Kode dijalankan!");
+            $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                $(this).remove();
+            })
+        }, 3000)
+    </script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 
 
     <!-- Optional JavaScript -->
@@ -83,13 +97,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-    <script>
-        window.setTimeout(function() {
-            $(".alert").fadeTo(500, 0).slideUp(500, function() {
-                $(this).remove();
-            })
-        }, 3000)
-    </script>
+
 </body>
 
 </html>

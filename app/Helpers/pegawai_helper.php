@@ -19,3 +19,6 @@ function anotherLogin()
     $db = \Config\Database::connect();
     return $db->table('admin')->where('user_idUser', session('idadmin'))->get()->getRow();
 }
+
+$session = session();
+$userId = $session->get('idUser');

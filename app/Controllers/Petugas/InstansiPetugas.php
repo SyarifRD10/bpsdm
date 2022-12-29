@@ -79,11 +79,6 @@ class InstansiPetugas extends BaseController
 
     public function update($id)
     {
-        // $this->instansiModel->update([
-        //     'id' => $id,
-        //     'nama' => $this->request->getVar('nama'),
-        //     'alamat' => $this->request->getVar('alamat'),
-        // ]);
 
         $data = [
             'id' => $id,

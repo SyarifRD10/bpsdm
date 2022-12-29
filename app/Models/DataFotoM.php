@@ -15,12 +15,14 @@ class DataFotoM extends Model
         return $this->db->table('data')->insert($data);
     }
 
-    public function get_id($id)
+    public function dataByUser($userId)
     {
-        $user = $this->db->table('data_foto')
-            ->where('user_idUser', $id)
-            ->get()
-            ->getRow();
-        return $user;
+        // $user = $this->db->table('data_foto')
+        //     ->where('user_idUser', $userId)
+        //     ->get()
+        //     ->getRow();
+        // return $user;
+
+        return $this->where('user_idUser', $userId)->findAll();
     }
 }
