@@ -18,6 +18,10 @@ class HomePetugas extends BaseController
     }
     public function index()
     {
+        $session = session();
+        $idUser = $session->get('idUser');
+        $get = $this->Format->getName($idUser);
+
         // $users = $this->Format->gabung();
         $inst = $this->Instansi->findAll();
         $data = [
@@ -25,7 +29,7 @@ class HomePetugas extends BaseController
             'subtitle' => 'Dashboard',
             'menu' => 'dashboard',
             'inst' => $inst,
-            // 'user' => $users,
+            'user' => $get,
             'validation' => \Config\Services::validation(),
         ];
         return view('petugas_view/homePetugas', $data);

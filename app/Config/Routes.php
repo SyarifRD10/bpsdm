@@ -52,6 +52,7 @@ $routes->post('/update_inst/(:any)', 'Petugas\InstansiPetugas::update/$1');
 // routes for pegawai
 $routes->get('/', 'Pegawai\HomePegawai::index');
 $routes->get('/mendatapgw', 'Pegawai\MendataPegawai::index');
+$routes->get('/mendatapgw/(:segment)', 'Pegawai\MendataPegawai::index/$1');
 $routes->post('/pegawaiFormat/(:segment)', 'Pegawai\MendataPegawai::save/$1');
 $routes->post('/pegawaiFoto', 'Pegawai\MendataPegawai::simpan');
 

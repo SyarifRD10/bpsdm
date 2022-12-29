@@ -13,7 +13,6 @@ class UserAdminSeeder extends Seeder
             'email' => 'test170@gmail.com',
             'password' => password_hash('123456789', PASSWORD_BCRYPT),
             'level' => '1',
-            'idadmin' => '1'
         ];
 
         $this->db->table('user')->insert($data);

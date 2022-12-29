@@ -36,18 +36,33 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($data as $d) : ?>
+            <?php $x = 1; ?>
+            <?php if ($data == 'd') : ?>
+                <?php foreach ($data as $d) : ?>
+                    <tr>
+                        <th scope="row"><?= $x++; ?></th>
+                        <td><?= $d['nama']; ?></td>
+                        <td><?= $d['foto']; ?></td>
+                        <td>
+                            <button type="button" class="btn btn-warning">
+                                <a href="" class="fa fa-pen" style="color:white;text-decoration:none;"></a>
+                            </button>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+
+            <?php else : ?>
                 <tr>
-                    <th scope="row">1</th>
-                    <td><?= $d['nama']; ?></td>
-                    <td><?= $d['foto']; ?></td>
+                    <th scope="row"></th>
+                    <td></td>
+                    <td></td>
                     <td>
                         <button type="button" class="btn btn-warning">
                             <a href="" class="fa fa-pen" style="color:white;text-decoration:none;"></a>
                         </button>
                     </td>
                 </tr>
-            <?php endforeach; ?>
+            <?php endif ?>
         </tbody>
     </table>
 </div>
@@ -67,6 +82,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
+
                     <div class="form-group">
                         <input type="text" class="form-control" name="nama" placeholder="Nama pemilik foto" autofocus>
                     </div>
@@ -75,6 +91,15 @@
                             <input type="file" class="custom-file-input" name="foto" id="foto">
                             <label class="custom-file-label" for="foto">Upload foto...</label>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <select name="idInstansi" class="form-control text-center">
+                            <option>---- Pilih Instansi ----</option>
+                            <?php foreach ($dataI as $i) : ?>
+                                <option value="<?= $i['idInstansi']; ?>"><?= $i['nama']; ?></option>
+                            <?php endforeach; ?>
+
+                        </select>
                     </div>
 
                 </div>
@@ -102,9 +127,20 @@
 
                     <div class="form-group">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="docJwb" id="docJwb">
-                            <label class="custom-file-label" for="docJwb">Upload format...</label>
+                            <input type="file" class="custom-file-input" name="data_jwb" id="data_jwb">
+                            <label class="custom-file-label" for="data_jwb">Upload format...</label>
                         </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <select name="idInstansi" class="form-control text-center">
+                            <option>---- Pilih Instansi ----</option>
+                            <?php foreach ($dataI as $i) : ?>
+                                <option value="<?= $i['idInstansi']; ?>"><?= $i['nama']; ?></option>
+                            <?php endforeach; ?>
+
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">

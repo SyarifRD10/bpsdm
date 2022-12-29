@@ -11,6 +11,8 @@ class AdminSeeder extends Seeder
         $data = [
             'namaAdmin' => 'Admin',
             'kontak' => '082224335161',
+            'user_idUser' => 1,
+
         ];
 
         $this->db->table('admin')->insert($data);

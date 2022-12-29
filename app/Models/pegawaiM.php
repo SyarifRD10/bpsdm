@@ -8,7 +8,7 @@ class pegawaiM extends Model
 {
     protected $table = 'pegawai';
     protected $primaryKey = 'idpegawai';
-    protected $allowedFields = ['namaPegawai', 'no_identitas', 'JK', 'docJwb', 'idInstansi'];
+    protected $allowedFields = ['namaPegawai', 'no_identitas', 'JK', 'idInstansi', 'user_idUser'];
 
 
     public function gabung()
