@@ -41,7 +41,9 @@ $routes->setAutoRoute(true);
 // $routes->get('/', 'Petugas\HomePetugas::index');
 $routes->get('/home', 'Petugas\HomePetugas::index');
 $routes->post('/save_d', 'Petugas\HomePetugas::save');
+$routes->get('/detail/(:num)', 'Petugas\HomePetugas::detailPegawai/$1');
 $routes->get('/petugasuser', 'Petugas\UserPetugas::index');
+$routes->get('/petugasfoto', 'Petugas\UserFoto::index');
 // instansi
 $routes->get('/addInstansi', 'Petugas\InstansiPetugas::index');
 $routes->post('/save_inst', 'Petugas\InstansiPetugas::save');
@@ -52,7 +54,12 @@ $routes->post('/update_inst/(:any)', 'Petugas\InstansiPetugas::update/$1');
 // routes for pegawai
 $routes->get('/', 'Pegawai\HomePegawai::index');
 $routes->get('/mendatapgw', 'Pegawai\MendataPegawai::index');
-$routes->post('/pegawaiFormat', 'Pegawai\MendataPegawai::save');
+
+//dok
+$routes->post('/pegawaiDok', 'Pegawai\MendataPegawai::save');
+$routes->get('/delete_dok/(:num)', 'Pegawai\MendataPegawai::deleteDok/$1');
+
+//foto
 $routes->post('/pegawaiFoto', 'Pegawai\MendataPegawai::simpan');
 $routes->get('/delete_foto/(:num)', 'Pegawai\MendataPegawai::delete/$1');
 $routes->get('/edit_foto/(:num)', 'Pegawai\MendataPegawai::edit/$1');

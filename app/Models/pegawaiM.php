@@ -21,6 +21,26 @@ class pegawaiM extends Model
 
         return $query->getResult();
     }
+
+    public function detailPegawai($id)
+    {
+
+        $builder = $this->db->table('pegawai');
+        $builder->select('pegawai.*, instansi.*');
+        $builder->join('instansi', 'instansi.idInstansi = pegawai.idInstansi');
+        $builder->where('pegawai.idpegawai', $id);
+        $query = $builder->get();
+        return $query->getResult();
+
+
+
+        // $builders = $this->db->table('pegawai');
+        // $builders->join('instansi', 'instansi.idInstansi = pegawai.idInstansi');
+        // $query = $builders->where('idpegawai', $id)->get();
+
+        // return $query->getResult();
+    }
+
     // public function show_d($table, $field)
     // {
     //     $data = $this->query("SHOW COLUMNS FROM" . $table . "WHERE `field` = " . $field);

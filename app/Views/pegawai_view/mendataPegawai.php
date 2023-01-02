@@ -1,6 +1,6 @@
 <?= $this->extend('pegawai_view/pegewaiTemplate'); ?>
 <?= $this->section('content'); ?>
-<div class="row mb-4 mt-5">
+<div class="row mb-4 mt-3">
     <button type="button" class="btn btn-success mr-4">Download format Excel</button>
 
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFile">Upload format Excel</button>
@@ -9,6 +9,7 @@
 <div class="row mb-4 mt-4">
     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalFoto">Upload Foto</button>
 </div>
+
 
 <?php if (session()->getFlashdata('pesan')) : ?>
     <div class="alert alert-success" role="alert">
@@ -22,10 +23,28 @@
     </div>
 <?php endif ?>
 
-
-
-
 <div class="row">
+        <hr>
+        <?php if(!$datas == null): ?>
+        <div class="col">
+            <div class="card text-center mt-2" style="width: 18rem;">
+                <div class="card-body">
+                    <img src="/doc/dataJWB/<?= $datas->data_jwb; ?>" alt="" class="fas fa-file-excel fa-5x">
+                    <h5 class="card-title mt-3" style="font-size: 1em"><?= $namaFile; ?></h5>
+                </div>
+                <div class="card-footer d-flex justify-content-end">
+                    <a href="" type="button" class="btn btn-warning btn-sm mr-2"><i class="fas fa-pencil-alt fa-2x"></i></a>
+                    <a href="/delete_dok/<?= $datas->iddata_jwb; ?>" type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash fa-2x"></i></a>
+                </div>
+            </div>
+        </div>
+        <?php endif ?>
+        <hr>
+</div>
+
+
+
+<div class="row mt-3">
     <table class="table table-sm">
         <thead>
             <tr>
@@ -87,7 +106,7 @@
     </div>
 </form>
 
-<form action="/pegawaiFormat" method="post" enctype="multipart/form-data">
+<form action="/pegawaiDok" method="post" enctype="multipart/form-data">
     <?= csrf_field() ?>
     <div class="modal fade" id="modalFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

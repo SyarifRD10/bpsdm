@@ -5,31 +5,35 @@ namespace App\Controllers\Petugas;
 use App\Controllers\BaseController;
 use App\Models\AdminM;
 use App\Models\instansiM;
+use App\Models\pegawaiM;
 
 class HomePetugas extends BaseController
 {
     protected $Format;
     protected $Instansi;
+    protected $Pegawai;
     public function __construct()
     {
+        $this->Pegawai = new pegawaiM();
         $this->Format = new AdminM();
         $this->Instansi = new instansiM();
         helper('form');
     }
     public function index()
     {
-        $session = session();
-        $idUser = $session->get('idUser');
-        $get = $this->Format->getName($idUser);
+        // $session = session();
+        // $idUser = $session->get('idUser');
+        // $get = $this->Format->getName($idUser);
 
         // $users = $this->Format->gabung();
+        $pegawai = $this->Pegawai->gabung();
         $inst = $this->Instansi->findAll();
+        // dd($pegawai);
         $data = [
             'title' => 'Petugas | Dashboard Petugas',
             'subtitle' => 'Dashboard',
             'menu' => 'dashboard',
-            'inst' => $inst,
-            'user' => $get,
+            'inst' => $pegawai,
             'validation' => \Config\Services::validation(),
         ];
         return view('petugas_view/homePetugas', $data);
@@ -61,5 +65,21 @@ class HomePetugas extends BaseController
         ]);
 
         return redirect()->to('/home')->withInput()->with('pesan', 'Data berhasil disimpan');
+    }
+
+    public function detailPegawai($id = null)
+    {
+        $detail = $this->Pegawai->detailPegawai($id);
+
+        // dd($detail);
+        $data = [
+            'title' => 'Petugas | Detail Data Pegawai',
+            'subtitle' => 'Detail Data',
+            'menu' => 'dashboard',
+            'datas' => $detail,
+        ];
+
+
+        return view('petugas_view/detailPgw', $data);
     }
 }

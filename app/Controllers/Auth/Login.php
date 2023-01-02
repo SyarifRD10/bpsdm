@@ -43,8 +43,7 @@ class Login extends BaseController
         $password = $post['password'];
         $user = $this->userModel->getUser($email);
 
-        // $query = $this->userModel->table('user')->getWhere(['email' => $email]);
-        // $user = $query->first();
+
         if ($user) {
             if (password_verify($password, $user['password'])) {
 
@@ -55,12 +54,6 @@ class Login extends BaseController
                 ];
                 session()->set($data);
 
-                // $id = ['idUser' => $user->idUser];
-                // // $email = ['idUser' => $user->email];
-                // $level = ['level' => $user->level];
-                // session()->set($id);
-                // // session()->set($email);
-                // session()->set($level);
                 if (session()->get('level') != 1) {
                     return redirect()->to('/mendatapgw');
                 }

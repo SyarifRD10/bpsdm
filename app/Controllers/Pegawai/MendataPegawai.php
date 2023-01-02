@@ -17,20 +17,42 @@ class MendataPegawai extends BaseController
     }
     public function index()
     {
-        // $mydata = $this->Foto->get_id($id);
         $userId = session()->get('idUser');
         $dat = $this->Foto->dataByUser($userId);
-        // $datas = $this->Foto->findAll();
+        $dok = $this->Jwb->dokByIdPegawai($userId);
+
+        $file = $this->Jwb->getFilesName($userId);
+        if (!$dok == null) {
+            if (!$file == null) {
+                if(!$file->data_jwb == null){
+                $file_path = $file->data_jwb;
+
+                $data = [
+                    'title' => 'Mendata',
+                    'menu' => 'mendata',
+                    'namaFile' => $file_path,
+                    'data' => $dat,
+                    'datas' => $dok,
+                    'validation' => \Config\Services::validation(),
+                ];
+
+                return view('pegawai_view/mendataPegawai', $data);
+                }
+            }
+        }
+
         $data = [
             'title' => 'Mendata',
             'menu' => 'mendata',
             'data' => $dat,
+            'datas' => $dok,
             'validation' => \Config\Services::validation(),
         ];
 
 
 
-        echo view('pegawai_view/mendataPegawai', $data);
+
+        return view('pegawai_view/mendataPegawai', $data);
     }
     public function save()
     {
@@ -177,5 +199,12 @@ class MendataPegawai extends BaseController
 
         // Tampilkan pesan sukses
         return redirect()->to('/mendatapgw')->withInput()->with('message', 'Data berhasil diubah');
+    }
+
+    public function deleteDok($id)
+    {
+        $this->Jwb->delete($id);
+        session()->setFlashdata('pesan', 'Data berhasil dihapus');
+        return redirect()->to('/mendatapgw');
     }
 }

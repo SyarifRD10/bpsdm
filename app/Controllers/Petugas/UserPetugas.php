@@ -19,12 +19,10 @@ class UserPetugas extends BaseController
     public function index()
     {
         $pgw = $this->mPegawai->gabung();
-        $user = $this->mUser->findAll();
         $data = [
             'title' => 'Petugas | Data Pendata',
             'subtitle' => 'Data Pendata',
             'pgw' => $pgw,
-            'user' => $user,
             'menu' => 'datapegawai',
         ];
 

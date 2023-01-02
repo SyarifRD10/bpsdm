@@ -25,4 +25,23 @@ class DataFotoM extends Model
 
         return $this->where('user_idUser', $userId)->findAll();
     }
+
+    public function dataByIdPegawai($id)
+    {
+        $builder = $this->db->table('data_foto');
+        $builder->where('user_idUser', $id);
+        $query = $builder->get();
+
+        return $query->getRow();
+    }
+
+    public function gabungIdUser()
+    {
+        $builder = $this->db->table('data_foto');
+        $builder->select('data_foto.*,user.*');
+        $builder->join('user', 'user.idUser = data_foto.user_idUser');
+        $query = $builder->get();
+
+        return $query->getResult();
+    }
 }

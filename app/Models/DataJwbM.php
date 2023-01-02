@@ -16,13 +16,30 @@ class DataJwbM extends Model
         return $this->db->table('data')->insert($data);
     }
 
-    // public function jon()
-    // {
-    //     $db = \Config\Database::connect();
-    //     $builder = $db->table('data_jwb');
-    //     $builder->join('instansi', 'instansi.idInstansi = data_jwb.instansi_idInstansi');
-    //     $query = $builder->get();
+    public function gabungDataByfk()
+    {
+        $builder = $this->db->table('data_jwb');
+        $builder->select('data_jwb.*,user.*');
+        $builder->join('user', 'user.idUser = data_jwb.user_idUser');
+        $query = $builder->get();
 
-    //     return $query->getResult();
-    // }
+        return $query->getResult();
+    }
+    public function dokByIdPegawai($id)
+    {
+        $builder = $this->db->table('data_jwb');
+        $builder->where('user_idUser', $id);
+        $query = $builder->get();
+
+        return $query->getRow();
+    }
+
+    public function getFilesName($id)
+    {
+        $builder = $this->db->table('data_jwb');
+        $builder->where('user_idUser', $id);
+        $query = $builder->get();
+
+        return $query->getRow();
+    }
 }
