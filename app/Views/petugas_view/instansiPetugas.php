@@ -1,17 +1,17 @@
-<?= $this->extend("petugas_view/template"); ?>
-<?= $this->section("content"); ?>
+<?=$this->extend("petugas_view/template");?>
+<?=$this->section("content");?>
 
-<?php if (session()->getFlashdata('pesan')) : ?>
+<?php if (session()->getFlashdata('pesan')): ?>
     <div class="alert alert-success" role="alert">
-        <?= session()->getFlashdata('pesan'); ?>
+        <?=session()->getFlashdata('pesan');?>
     </div>
-<?php endif ?>
+<?php endif?>
 
-<?php if (session()->getFlashdata('errors')) : ?>
+<?php if (session()->getFlashdata('errors')): ?>
     <div class="alert alert-danger" role="alert">
-        <?= session()->getFlashdata('errors'); ?>
+        <?=session()->getFlashdata('errors');?>
     </div>
-<?php endif ?>
+<?php endif?>
 <div class="row mb-4">
     <div class="col">
         <button type="button" class="btn btn-info mr-2" data-toggle="modal" data-target="#modalInst">
@@ -44,16 +44,16 @@
                     </tr>
                 </tfoot>
                 <tbody>
-                    <?php foreach ($inst as $i) : ?>
+                    <?php foreach ($inst as $i): ?>
                         <tr>
-                            <td><?= $i['nama']; ?></td>
-                            <td><?= $i['alamat']; ?></td>
+                            <td><?=$i['nama'];?></td>
+                            <td><?=$i['alamat'];?></td>
                             <td class="inertable">
-                                <a href="/edit_inst/<?= $i['idInstansi']; ?>" type="button" class="btn btn-info"><i class="fas fa-pen"></i></a>
-                                <a href="/delete_inst/<?= $i['idInstansi']; ?>" onclick="return confirm('Apakah anda yakin?')" type="button" class="btn btn-danger mr-2"><i class="fas fa-trash"></i></a>
+                                <a href="/edit_inst/<?=$i['idInstansi'];?>" type="button" class="btn btn-info"><i class="fas fa-pen"></i></a>
+                                <a href="/delete_inst/<?=$i['idInstansi'];?>" onclick="return confirm('Apakah anda yakin?')" type="button" class="btn btn-danger mr-2"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
-                    <?php endforeach ?>
+                    <?php endforeach?>
                 </tbody>
             </table>
         </div>
@@ -62,7 +62,7 @@
 
 <!-- modal tambah -->
 <form action="/save_inst" method="post" enctype="multipart/form-data">
-    <?= csrf_field(); ?>
+    <?=csrf_field();?>
     <div class="modal fade" id="modalInst" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -97,4 +97,4 @@
     ?>
 </form>
 
-<?= $this->endSection(); ?>
+<?=$this->endSection();?>

@@ -43,15 +43,15 @@ class Login extends BaseController
         $password = $post['password'];
         $user = $this->userModel->getUser($email);
 
-
         if ($user) {
             if (password_verify($password, $user['password'])) {
 
                 $data = [
                     'idUser' => $user['idUser'],
                     'email' => $user['email'],
-                    'level' => $user['level']
+                    'level' => $user['level'],
                 ];
+
                 session()->set($data);
 
                 if (session()->get('level') != 1) {

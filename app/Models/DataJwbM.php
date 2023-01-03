@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use CodeIgniter\Database\MySQLi\Connection;
 use CodeIgniter\Model;
 
 class DataJwbM extends Model
 {
-    protected $table = 'data_jwb';
+    protected $table = 'jwb';
     protected $primaryKey = 'iddata_jwb';
-    protected $allowedFields = ['data_jwb',  'user_idUser'];
+    protected $allowedFields = ['data_jwb', 'user_idUser'];
 
     public function insert_file($data)
     {
@@ -18,16 +17,16 @@ class DataJwbM extends Model
 
     public function gabungDataByfk()
     {
-        $builder = $this->db->table('data_jwb');
-        $builder->select('data_jwb.*,user.*');
-        $builder->join('user', 'user.idUser = data_jwb.user_idUser');
+        $builder = $this->db->table('jwb');
+        $builder->select('jwb.*,user.*');
+        $builder->join('user', 'user.idUser = jwb.user_idUser');
         $query = $builder->get();
 
         return $query->getResult();
     }
     public function dokByIdPegawai($id)
     {
-        $builder = $this->db->table('data_jwb');
+        $builder = $this->db->table('jwb');
         $builder->where('user_idUser', $id);
         $query = $builder->get();
 
@@ -36,7 +35,7 @@ class DataJwbM extends Model
 
     public function getFilesName($id)
     {
-        $builder = $this->db->table('data_jwb');
+        $builder = $this->db->table('jwb');
         $builder->where('user_idUser', $id);
         $query = $builder->get();
 

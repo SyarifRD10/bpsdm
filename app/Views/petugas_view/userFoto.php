@@ -1,5 +1,5 @@
-<?= $this->extend("petugas_view/template"); ?>
-<?= $this->section("content"); ?>
+<?=$this->extend("petugas_view/template");?>
+<?=$this->section("content");?>
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -25,18 +25,18 @@
                     </tr>
                 </tfoot>
                 <tbody>
-                    <?php foreach ($datas as $i) : ?>
+                    <?php foreach ($datas as $i): ?>
                         <tr>
-                            <td><?= $i->nama; ?></td>
-                            <td><img src="doc/foto/<?= $i->foto; ?>" class="img" alt=""></td>
+                            <td><?=$i->nama;?></td>
+                            <td><img src="doc/foto/<?=$i->foto;?>" class="img" alt=""></td>
                             <td>
-                                <div><?= $i->email; ?></div>
+                                <div><?=$i->email;?></div>
                             </td>
                             <td class="inertable">
-                                <a href="/doc/foto/<?= $i->foto; ?>" download class="btn btn-primary mx-auto" style="margin-top: 2em;">Download Gambar</a>
+                                <a href="/doc/foto/<?=$i->foto;?>" download class="btn btn-primary mx-auto" style="margin-top: 2em;">Download Gambar</a>
                             </td>
                         </tr>
-                    <?php endforeach ?>
+                    <?php endforeach?>
                 </tbody>
             </table>
         </div>
@@ -45,7 +45,7 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Data Foto</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Data Dokumen Excel</h6>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -65,15 +65,15 @@
                     </tr>
                 </tfoot>
                 <tbody>
-                    <?php foreach ($datass as $i) : ?>
+                    <?php foreach ($datass as $i): ?>
                         <tr>
-                            <td><?= $i->email; ?></td>
-                            <td style="text-align: center;"><img src="/doc/dataPGW/<?= $i->data_jwb; ?>" alt=""><i class="fas fa-file-excel" style="font-size: 25px;"></i></td>
+                            <td><?=$i->email;?></td>
+                            <td style="text-align: center;"><img src="/doc/dataPGW/<?=$i->data_jwb;?>" alt=""><i class="fas fa-file-excel" style="font-size: 25px;"></i></td>
                             <td class="inertable">
-                                <a href="/doc/dataPGW/<?= $i->data_jwb; ?>" download class="btn btn-primary mx-auto">Download Dokumen</a>
+                                <a href="/doc/dataPGW/<?=$i->data_jwb;?>" download class="btn btn-primary mx-auto">Download Dokumen</a>
                             </td>
                         </tr>
-                    <?php endforeach ?>
+                    <?php endforeach?>
                 </tbody>
             </table>
         </div>
@@ -83,4 +83,4 @@
 
 
 
-<?= $this->endSection(); ?>
+<?=$this->endSection();?>

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?= $title; ?></title>
+    <title><?=$title;?></title>
 
     <!-- Custom fonts for this template-->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -29,7 +29,7 @@
 </head>
 
 <body id="page-top">
-    <?php $session = session(); ?>
+    <?php $session = session();?>
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -49,7 +49,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item <?= $menu == 'dashboard' ? 'active' : '' ?>">
+            <li class="nav-item <?=$menu == 'dashboard' ? 'active' : ''?>">
                 <a class="nav-link" href="/home">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -63,19 +63,19 @@
                 Pendataan
             </div>
 
-            <li class="nav-item <?= $menu == 'datapegawai' ? 'active' : '' ?>">
+            <li class="nav-item <?=$menu == 'datapegawai' ? 'active' : ''?>">
                 <a class="nav-link" href="/petugasuser">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Data Pegawai</span></a>
             </li>
 
-            <li class="nav-item <?= $menu == 'datafoto' ? 'active' : '' ?>">
+            <li class="nav-item <?=$menu == 'datafoto' ? 'active' : ''?>">
                 <a class="nav-link" href="/petugasfoto">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Data Uploaded</span></a>
             </li>
 
-            <li class="nav-item <?= $menu == 'instansi' ? 'active' : '' ?>">
+            <li class="nav-item <?=$menu == 'instansi' ? 'active' : ''?>">
                 <a class="nav-link" href="/addInstansi">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Data Instansi</span></a>
@@ -143,7 +143,7 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= session()->get('email') ?></span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?=session()->get('email')?></span>
                                 <img class="img-profile rounded-circle" src="/img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -167,10 +167,10 @@
                 <div class="container-fluid">
 
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800"><?= $subtitle; ?></h1>
+                        <h1 class="h3 mb-0 text-gray-800"><?=$subtitle;?></h1>
                     </div>
 
-                    <?= $this->renderSection('content'); ?>
+                    <?=$this->renderSection('content');?>
                     <!-- Page Heading -->
 
                 </div>
@@ -205,12 +205,12 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Logout?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Apakah anda yakin ingin Logout?.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <a class="btn btn-primary" href="/out">Logout</a>
@@ -235,26 +235,6 @@
 
     <!-- Page level custom scripts -->
     <script src="/js/demo/datatables-demo.js"></script>
-
-    <!-- Page level plugins -->
-    <!-- <script src="vendor/chart.js/Chart.min.js"></script> -->
-
-    <!-- Page level custom scripts -->
-    <!-- <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script> -->
-
-
-    <!-- <script>
-            document.getElementById("dokumen1").name;
-        // function changeLable() {
-        //     const documentLable = document.querySelector('.custom-file-lable');
-
-        //     documentLable.textContent = document.file[0].name;
-
-        //     const fileDocument = new FileReader();
-        //     fileDocument.readAsDataURL(document.file[0]);
-        // }
-    </script> -->
 
     <script>
         window.setTimeout(function() {

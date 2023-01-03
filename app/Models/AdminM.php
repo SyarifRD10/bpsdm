@@ -4,12 +4,11 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-
 class AdminM extends Model
 {
     protected $table = 'admin';
     protected $primaryKey = 'idadmin';
-    protected $allowedFields = ['format', 'user_idUser'];
+    protected $allowedFields = ['user_idUser'];
 
     public function insert_file($data)
     {
@@ -36,4 +35,5 @@ class AdminM extends Model
 
         return $builder->get()->getResultArray();
     }
+
 }

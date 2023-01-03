@@ -3,54 +3,47 @@
 namespace App\Controllers\Pegawai;
 
 use App\Controllers\BaseController;
-use App\Models\DataJwbM;
 use App\Models\DataFotoM;
+use App\Models\DataJwbM;
+use App\Models\FormatM;
 
 class MendataPegawai extends BaseController
 {
     protected $Jwb;
     protected $Foto;
+    protected $Dokumen;
     public function __construct()
     {
         $this->Jwb = new DataJwbM();
         $this->Foto = new DataFotoM();
+        $this->Dokumen = new FormatM();
     }
     public function index()
     {
         $userId = session()->get('idUser');
         $dat = $this->Foto->dataByUser($userId);
         $dok = $this->Jwb->dokByIdPegawai($userId);
+        $for = $this->Dokumen->findAll();
+        if (!$for == null) {
+            $data = [
+                'title' => 'Mendata',
+                'menu' => 'mendata',
+                'data' => $dat,
+                'datas' => $dok,
+                'x' => $for,
+                'validation' => \Config\Services::validation(),
+            ];
 
-        $file = $this->Jwb->getFilesName($userId);
-        if (!$dok == null) {
-            if (!$file == null) {
-                if(!$file->data_jwb == null){
-                $file_path = $file->data_jwb;
-
-                $data = [
-                    'title' => 'Mendata',
-                    'menu' => 'mendata',
-                    'namaFile' => $file_path,
-                    'data' => $dat,
-                    'datas' => $dok,
-                    'validation' => \Config\Services::validation(),
-                ];
-
-                return view('pegawai_view/mendataPegawai', $data);
-                }
-            }
+            return view('pegawai_view/mendataPegawai', $data);
         }
-
         $data = [
             'title' => 'Mendata',
             'menu' => 'mendata',
             'data' => $dat,
             'datas' => $dok,
+            'x' => $for,
             'validation' => \Config\Services::validation(),
         ];
-
-
-
 
         return view('pegawai_view/mendataPegawai', $data);
     }
@@ -58,11 +51,12 @@ class MendataPegawai extends BaseController
     {
         if (!$this->validate([
             'data_jwb' => [
-                'rules' => 'uploaded[data_jwb]|max_size[data_jwb,10024]|ext_in[data_jwb,xls,xlt,xml,xlsx,xlsm]|mime_in[data_jwb,application/xls,application/excel,application/msexcel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet]',
+                'rules' => 'is_unique[jwb.data_jwb]|max_size[data_jwb,10024]|ext_in[data_jwb,xls,xlt,xml,xlsx,xlsm]|mime_in[data_jwb,application/xls,application/excel,application/msexcel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet]',
                 'errors' => [
-                    'uploaded' => 'File tidak boleh sama denga yang ada',
+                    // 'uploaded' => 'File tidak boleh sama denga yang ada',
+                    'is_unique' => 'Data sudah ada di dalam database',
                     'max_size' => 'Ukuran dokumen terlalu besar',
-                    'ext_in' => 'Format file tidak sesuai Kax',
+                    'ext_in' => 'Format file tidak sesuai',
                     'mime_in' => 'Format file tidak sesuai',
                 ],
             ],
@@ -204,7 +198,7 @@ class MendataPegawai extends BaseController
     public function deleteDok($id)
     {
         $this->Jwb->delete($id);
-        session()->setFlashdata('pesan', 'Data berhasil dihapus');
+        session()->setFlashdata('errors', 'Data berhasil dihapus');
         return redirect()->to('/mendatapgw');
     }
 }

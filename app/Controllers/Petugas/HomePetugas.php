@@ -3,7 +3,7 @@
 namespace App\Controllers\Petugas;
 
 use App\Controllers\BaseController;
-use App\Models\AdminM;
+use App\Models\FormatM;
 use App\Models\instansiM;
 use App\Models\pegawaiM;
 
@@ -15,25 +15,23 @@ class HomePetugas extends BaseController
     public function __construct()
     {
         $this->Pegawai = new pegawaiM();
-        $this->Format = new AdminM();
+        $this->Format = new FormatM();
         $this->Instansi = new instansiM();
         helper('form');
     }
     public function index()
     {
-        // $session = session();
-        // $idUser = $session->get('idUser');
-        // $get = $this->Format->getName($idUser);
 
-        // $users = $this->Format->gabung();
         $pegawai = $this->Pegawai->gabung();
         $inst = $this->Instansi->findAll();
-        // dd($pegawai);
+        $dataFormat = $this->Format->findAll();
+
         $data = [
             'title' => 'Petugas | Dashboard Petugas',
             'subtitle' => 'Dashboard',
             'menu' => 'dashboard',
             'inst' => $pegawai,
+            'dokFormat' => $dataFormat,
             'validation' => \Config\Services::validation(),
         ];
         return view('petugas_view/homePetugas', $data);
@@ -42,27 +40,31 @@ class HomePetugas extends BaseController
     public function save()
     {
         if (!$this->validate([
-            'format' => [
-                'rules' => 'max_size[format,2048]|mime_in[format,application/xls,application/excel,application/msexcel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet]',
+            'dok' => [
+                'rules' => 'max_size[dok,2048]|mime_in[dok,application/xls,application/excel,application/msexcel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet]',
                 'errors' => [
                     'max_size' => 'Ukuran Format terlalu besar',
-                    'mime_in' => 'Format Format tidak sesuai'
-                ]
-            ]
+                    'mime_in' => 'Format Format tidak sesuai',
+                ],
+            ],
         ])) {
 
             session()->setFlashdata('errors', $this->validator->listErrors());
             return redirect()->back()->withInput();
         }
 
-        $fileFormat = $this->request->getFile('format');
+        $userId = session()->get('idUser');
+
+        $fileFormat = $this->request->getFile('dok');
         $namaFile = $fileFormat->getName();
         $fileFormat->move('doc', $namaFile);
 
-        $this->Format->save([
-            'idadmin' => '1',
-            'format' => $namaFile,
-        ]);
+        $data = [
+            'dok' => $namaFile,
+            'user_idUser' => $userId,
+        ];
+        // dd($data);
+        $this->Format->save($data);
 
         return redirect()->to('/home')->withInput()->with('pesan', 'Data berhasil disimpan');
     }
@@ -79,7 +81,14 @@ class HomePetugas extends BaseController
             'datas' => $detail,
         ];
 
-
         return view('petugas_view/detailPgw', $data);
     }
+
+    public function deleteFormat($id)
+    {
+        $this->Format->delete($id);
+        session()->setFlashdata('errors', 'Format berhasil dihapus');
+        return redirect()->to('/home');
+    }
+
 }

@@ -44,6 +44,9 @@ $routes->post('/save_d', 'Petugas\HomePetugas::save');
 $routes->get('/detail/(:num)', 'Petugas\HomePetugas::detailPegawai/$1');
 $routes->get('/petugasuser', 'Petugas\UserPetugas::index');
 $routes->get('/petugasfoto', 'Petugas\UserFoto::index');
+
+//format
+$routes->get('/delete_format/(:num)', 'Petugas\HomePetugas::deleteFormat/$1');
 // instansi
 $routes->get('/addInstansi', 'Petugas\InstansiPetugas::index');
 $routes->post('/save_inst', 'Petugas\InstansiPetugas::save');
