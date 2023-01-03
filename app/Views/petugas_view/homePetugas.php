@@ -18,34 +18,63 @@
 
 <div class="row mb-2">
     <div class="col-4">
-        <h5>Upload & Delete Format Excel</h5>
-    </div>
-    <div class="col-8">
-        <hr>
-    </div>
-</div>
-<?php foreach ($dokFormat as $i): ?>
-<div class="row mb-4">
-    <div class="col">
-        <div class="row">
-            <div class="card text-center mt-2" style="width: 18rem;">
-                <div class="card-body">
-                    <img src="/doc/<?=$i['dok'];?>" alt="" class="fas fa-file-excel fa-5x">
-                    <h5 class="card-title mt-3" style="font-size: 1em">
-                        <?=$i['dok'];?>
-                    </h5>
-                </div>
-                <div class="card-footer d-flex justify-content-end">
-                    <a href="" type="button" class="btn btn-warning btn-sm mr-2"><i
-                            class="fas fa-pencil-alt fa-2x"></i></a>
-                    <a href="/delete_format/<?=$i['idFormat'];?>" type="button" onclick="return confirm('Apakah anda yakin ingin menghapus format?')" class="btn btn-danger btn-sm"><i
-                            class="fas fa-trash fa-2x"></i></a>
+        <h5>Format Excel</h5>
+        <?php foreach ($dokFormat as $i): ?>
+        <div class="row mb-4">
+            <div class="col">
+                <div class="row">
+                    <div class="card text-center mt-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <img src="/doc/<?=$i['dok'];?>" alt="" class="fas fa-file-excel fa-5x">
+                            <h5 class="card-title mt-3" style="font-size: 1em">
+                                <?=$i['dok'];?>
+                            </h5>
+                        </div>
+                        <div class="card-footer d-flex justify-content-end">
+                            <a href="" type="button" class="btn btn-warning btn-sm mr-2"><i
+                                    class="fas fa-pencil-alt fa-2x"></i></a>
+                            <a href="/delete_format/<?=$i['idFormat'];?>" type="button" onclick="return confirm('Apakah anda yakin ingin menghapus format?')" class="btn btn-danger btn-sm"><i
+                                    class="fas fa-trash fa-2x"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <?php endforeach?>
+    </div>
+    <div class="col-8">
+        <h5>Data Instansi</h5>
+        <div class="row">
+            <?php foreach ($inst as $i): ?>
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <div class="card border-left-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col">
+                                    <div class="row ">
+                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                            <?=$i->alamat;?>
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <a class="text-gray-800 a-style"
+                                                href="/detail/<?=$i->idpegawai;?>">
+                                                <?=$i->nama;?>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto ">
+                                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach?>
+        </div>
     </div>
 </div>
-<?php endforeach?>
+
 <div class="row mb-4">
     <div class="col">
         <button type="button" class="btn btn-info mr-2" data-toggle="modal" data-target="#ModalFormat">Upload
@@ -53,40 +82,9 @@
     </div>
 </div>
 
-<div class="row mb-2">
-    <div class="col-4">
-        <h5>Data Peserta LATSAR</h5>
-    </div>
-    <div class="col-8">
-        <hr>
-    </div>
-</div>
 
-<div class="row">
-    <?php foreach ($inst as $i): ?>
-    <div class="col-xl-4 col-md-6 mb-4">
-        <div class="card border-left-warning shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            <?=$i->alamat;?>
-                        </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><a class="text-gray-800 a-style"
-                                href="/detail/<?=$i->idpegawai;?>">
-                                <?=$i->nama;?>
-                            </a></div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <?php endforeach?>
 
-</div>
+
 
 
 

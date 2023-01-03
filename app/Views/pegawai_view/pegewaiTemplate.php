@@ -34,19 +34,30 @@
                     <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
                 </li>
 
-
-
                 <?php if (session()->get('idUser') == true): ?>
-                    <li class="nav-item <?=$menu == 'mendata' ? 'active' : ''?>">
-                        <a class="nav-link" href="/mendatapgw">Mendata</a>
-                    </li>
-                    <li class="nav-item justify-content-end">
-                        <a class="nav-link" href="/out"  onclick="return confirm('Apakah anda yakin ingin logout?')">Logout</a>
-                    </li>
-                    <li class="nav-item justify-content-end">
-                        <p class="nav-link"><?=session()->get('email');?></p>
-                    </li>
+                    <?php if (session()->get('level') == 1): ?>
+
+                        <li class="nav-item <?=$menu == 'mendata' ? 'active' : ''?>">
+                            <a class="nav-link" href="/home">Home Admin</a>
+                        </li>
+                        <li class="nav-item justify-content-end">
+                            <a class="nav-link" href="/out"  onclick="return confirm('Apakah anda yakin ingin logout?')">Logout</a>
+                        </li>
+                        <li class="nav-item justify-content-end active">
+                            <p class="nav-link"><?=session()->get('email');?></p>
+                        </li>
                     <?php else: ?>
+                        <li class="nav-item <?=$menu == 'mendata' ? 'active' : ''?>">
+                            <a class="nav-link" href="/mendatapgw">Mendata</a>
+                        </li>
+                        <li class="nav-item justify-content-end">
+                            <a class="nav-link" href="/out"  onclick="return confirm('Apakah anda yakin ingin logout?')">Logout</a>
+                        </li>
+                        <li class="nav-item justify-content-end active">
+                            <p class="nav-link"><?=session()->get('email');?></p>
+                        </li>
+                        <?php endif?>
+                <?php else: ?>
                     <li class="nav-item justify-content-end">
                         <a class="nav-link" href="/signin">Login</a>
                     </li>

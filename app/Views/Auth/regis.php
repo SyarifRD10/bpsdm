@@ -1,12 +1,12 @@
-<?= $this->extend("Auth/templateAuth"); ?>
-<?= $this->section("auth"); ?>
+<?=$this->extend("Auth/templateAuth");?>
+<?=$this->section("auth");?>
 
 <!-- Outer Row -->
 <div class="row justify-content-center mt-5">
 
     <div class="col-xl-6 col-lg-12 col-md-9">
 
-        <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card o-hidden border-0 shadow-lg my-5" style="background: linear-gradient(to bottom, #D3D3D3, #A9A9A9);">
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
@@ -18,11 +18,11 @@
                                 <h1 class="h4 text-gray-900 mb-4">SINGUP LATSAR</h1>
                             </div>
 
-                            <?php if (session()->getFlashdata('errors')) : ?>
+                            <?php if (session()->getFlashdata('errors')): ?>
                                 <div class="alert alert-danger" role="alert">
-                                    <?= session()->getFlashdata('errors'); ?>
+                                    <?=session()->getFlashdata('errors');?>
                                 </div>
-                            <?php endif; ?>
+                            <?php endif;?>
 
                             <form class="user" action="/save_user" method="post">
                                 <div class="form-group">
@@ -49,9 +49,9 @@
                                 <div class="form-group">
                                     <select name="idInstansi" class="form-control text-center">
                                         <option>---- Pilih Instansi ----</option>
-                                        <?php foreach ($dataI as $i) : ?>
-                                            <option value="<?= $i['idInstansi']; ?>"><?= $i['nama']; ?></option>
-                                        <?php endforeach; ?>
+                                        <?php foreach ($dataI as $i): ?>
+                                            <option value="<?=$i['idInstansi'];?>"><?=$i['nama'];?></option>
+                                        <?php endforeach;?>
 
                                     </select>
                                 </div>
@@ -87,4 +87,4 @@
 
 </div>
 
-<?= $this->endSection(); ?>
+<?=$this->endSection();?>

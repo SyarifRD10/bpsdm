@@ -6,7 +6,7 @@
 
     <div class="col-xl-4 col-lg-12 col-md-9">
 
-        <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card o-hidden border-0 shadow-lg my-5" style="background: linear-gradient(to bottom, #D3D3D3, #A9A9A9);">
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">

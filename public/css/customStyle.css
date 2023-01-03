@@ -2,6 +2,18 @@
   width: 75px;
 }
 
+.img-brand {
+  width: 45px;
+}
+
 .table > tbody > tr > * {
   vertical-align: middle;
+}
+
+.btn-yellow {
+  background: linear-gradient(to bottom, #f3722c, #f9c74f);
+}
+
+.btn-yellow > i {
+  color: white;
 }
